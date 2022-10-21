@@ -1,6 +1,7 @@
 class Game {
-  constructor(name, minNumOfPlayers, maxNumOfPlayers) {
+  constructor(name, isTeam, minNumOfPlayers, maxNumOfPlayers) {
     this._name = name;
+    this._isTeam = isTeam;
     this._minNumOfPlayers = minNumOfPlayers;
     this._maxNumOfPlayers = maxNumOfPlayers;
     this._ratings = [];
@@ -8,6 +9,10 @@ class Game {
 
   get name() {
     return this._name;
+  }
+
+  get isTeam() {
+    return this._isTeam;
   }
 
   get minNumOfPlayers() {
@@ -40,8 +45,8 @@ class Game {
 }
 
 class CardGame extends Game {
-  constructor(name, minNumOfPlayers, maxNumOfPlayers, decksReq) {
-    super(name, minNumOfPlayers, maxNumOfPlayers);
+  constructor(name, isTeam, minNumOfPlayers, maxNumOfPlayers, decksReq) {
+    super(name, isTeam, minNumOfPlayers, maxNumOfPlayers);
     this._decksReq = decksReq;
   }
 
@@ -51,8 +56,8 @@ class CardGame extends Game {
 }
 
 class BoardGame extends Game {
-  constructor(name, minNumOfPlayers, maxNumOfPlayers, type) {
-    super(name, minNumOfPlayers, maxNumOfPlayers);
+  constructor(name, isTeam, minNumOfPlayers, maxNumOfPlayers, type) {
+    super(name, isTeam, minNumOfPlayers, maxNumOfPlayers);
     this._type = type;
   }
 
@@ -61,9 +66,9 @@ class BoardGame extends Game {
   }
 }
 
-const charades = new Game("Charades", 4, null);
-const chess = new BoardGame("Chess", 2, 2, ["strategy", "classic"]);
-const solitaire = new CardGame("Solitaire", 1, 1, 1);
+const charades = new Game("Charades", true, 4, null);
+const chess = new BoardGame("Chess", false, 2, 2, ["strategy", "classic"]);
+const solitaire = new CardGame("Solitaire", false, 1, 1, 1);
 
 charades.addRating(5);
 chess.addRating(3);
