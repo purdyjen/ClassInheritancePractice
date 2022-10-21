@@ -1,0 +1,20 @@
+{
+  "name": "classinheritancepractice",
+  "version": "1.0.0",
+  "description": "Today you work on objects, classes, and inheritance.  To do this, you will work independently on this project.  It should take you about 45 minutes.",
+  "main": "app-example.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/purdyjen/ClassInheritancePractice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/purdyjen/ClassInheritancePractice/issues"
+  },
+  "homepage": "https://github.com/purdyjen/ClassInheritancePractice#readme"
+}

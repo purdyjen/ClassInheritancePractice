@@ -1,69 +1,76 @@
-class Person {
-    //creates instance of Person with properties name, age, and numBooksRead
-    constructor(name, age, numBooksRead) {
-        this.name = name;
-        this.age = age;
-        this.numBooksRead = numBooksRead;
-    }
+class Game {
+  constructor(name, minNumOfPlayers, maxNumOfPlayers) {
+    this._name = name;
+    this._minNumOfPlayers = minNumOfPlayers;
+    this._maxNumOfPlayers = maxNumOfPlayers;
+    this._ratings = [];
+  }
 
-    //increments numBooksRead by 1
-    readNewBook() {
-        this.numBooksRead++;
+  get name() {
+    return this._name;
+  }
+
+  get minNumOfPlayers() {
+    return this._minNumOfPlayers;
+  }
+
+  get maxNumOfPlayers() {
+    return this._maxNumOfPlayers;
+  }
+
+  get ratings() {
+    return this._ratings;
+  }
+
+  getAverageRating() {
+    let average =
+      this._ratings.reduce((currentSum, rating) => currentSum + rating) /
+      this._ratings.length;
+    return `Average Rating: ${average.toPrecision(2)}`;
+  }
+
+  addRating(newRating) {
+    if (newRating >= 1 && newRating <= 5) {
+      this._ratings.push(newRating);
+      return this._ratings;
+    } else {
+      return `Please enter a number between 1 and 5.`;
     }
+  }
 }
 
-class Electrician extends Person {
-    //creates instance of Electrician with Person properites plus certifications, an array of strings
-    constructor(name, age, numBooksRead, certifications) {
-        super(name, age, numBooksRead);
-        this.certifications = certifications;
-    }
+class CardGame extends Game {
+  constructor(name, minNumOfPlayers, maxNumOfPlayers, decksReq) {
+    super(name, minNumOfPlayers, maxNumOfPlayers);
+    this._decksReq = decksReq;
+  }
+
+  get decksReq() {
+    return this._decksReq;
+  }
 }
 
-class Teenager extends Person {
-    //creates instance of Teenager with Person properties plus isHungry, a boolean value
-    constructor(name, age, numBooksRead, isHungry = true) {
-        super(name, age, numBooksRead);
-        this.isHungry = isHungry;
-    }
+class BoardGame extends Game {
+  constructor(name, minNumOfPlayers, maxNumOfPlayers, type) {
+    super(name, minNumOfPlayers, maxNumOfPlayers);
+    this._type = type;
+  }
 
-    //feeds the teenager.  If they are hungry, changes isHungry to false, if they are not hungry, prints message to console.
-    eat() {
-        if(this.isHungry) {
-            this.isHungry = false;
-        } else {
-            console.log('Oh no I think I ate too much')
-        }
-    }
+  get type() {
+    return this._type;
+  }
 }
 
-//below we will test our classes by instantiating them, calling each method, and verifying output
+const charades = new Game("Charades", 4, null);
+const chess = new BoardGame("Chess", 2, 2, ["strategy", "classic"]);
+const solitaire = new CardGame("Solitaire", 1, 1, 1);
 
-//create instances of each class
-let person = new Person('Euthyphro', 35, 0);
-let electrician = new Electrician('Zeus', 28, 3, ['Lightning', 'Polymorphism']);
-let teen = new Teenager('Persius', 16, 5, true);
+charades.addRating(5);
+chess.addRating(3);
+chess.addRating(1);
+solitaire.addRating(1);
 
-//log each instance
-console.log(person);
-console.log(electrician);
-console.log(teen);
-
-//call the method from the parent class to ensure it works as expected
-person.readNewBook();
-electrician.readNewBook();
-teen.readNewBook();
-
-//log the objects after calling .readNewBook() to verify it worked as intended
-console.log(person);
-console.log(electrician);
-console.log(teen);
-
-//call .eat()
-teen.eat();
-
-//check that .eat() when isHungry == true works as expected
-console.log(teen);
-
-//check that .eat() when isHungry == false works as expected
-teen.eat();
+console.log(charades);
+console.log(chess);
+console.log(solitaire);
+console.log(chess.getAverageRating());
