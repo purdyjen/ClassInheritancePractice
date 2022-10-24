@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/purdyjen/ClassInheritancePractice/issues"
   },
-  "homepage": "https://github.com/purdyjen/ClassInheritancePractice#readme"
+  "homepage": "https://github.com/purdyjen/ClassInheritancePractice#readme",
+  "dependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "type": "module"
 }
